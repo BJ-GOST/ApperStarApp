@@ -1,0 +1,428 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'kumbh Sans', Sans-serif;
+    scroll-behavior: smooth;
+}
+
+.nav {
+    width: 100%;
+    height: auto;
+    background: rgb(0, 0, 18);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.account img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.account-container {
+    color: white;
+}
+
+.account-container span {
+    cursor: pointer;
+    transition: .5s ease;
+}
+
+.account-container span:hover {
+    color: aquamarine;
+    transition: .5s ease;
+}
+
+.account-container {
+    position: relative;
+    display: inline-block;
+}
+
+.drop-content {
+    position: absolute;
+    display: none;
+    background-color: rgba(0, 0, 18, 1.0);
+}
+
+.account-container:hover>.drop-content {
+    display: block;
+}
+
+.logout-btn {
+    text-decoration: none;
+    color: white;
+    padding: 25px 30px;
+}
+
+
+/* menu items begin here */
+
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    z-index: 1;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+#navbar__logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.navbar__items {
+    height: 80px;
+}
+
+.navbar__links {
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    text-decoration: none;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.navbar__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+.navbar__links:hover {
+    color: #044b6e;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width: 960px) {
+    .navbar__container {
+        display: flex;
+        justify-content: space-between;
+        height: auto;
+        z-index: 1;
+        width: 100%;
+        max-width: 960px;
+        padding: 0;
+    }
+    .navbar__menu {
+        display: grid;
+        grid-template-columns: auto;
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        top: -1000px;
+        opacity: 1;
+        transition: all 0.5s ease-in-out;
+        z-index: -1;
+    }
+    .navbar__menu.active {
+        background: #044b6e;
+        top: 20%;
+        opacity: 1;
+        transition: all 0.5s ease;
+        z-index: 99;
+        height: 60vh;
+        font-size: 1.6rem;
+    }
+    .navbar__links:hover {
+        color: #fff;
+        transition: all 0.3s ease;
+    }
+    #navbar__logo {
+        padding-left: 25px;
+    }
+    .navbar__toggle .bar {
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background: black;
+    }
+    .navbar__items {
+        width: 100%;
+    }
+    .navbar__links {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        display: table;
+    }
+    .navbar__btn {
+        padding-bottom: 2rem;
+    }
+    #mobile-menu {
+        position: absolute;
+        top: 10%;
+        right: 5%;
+        transform: translate(5%, 20%);
+    }
+    .navbar__toggle .bar {
+        display: block;
+        cursor: pointer;
+    }
+    #mobile-menu.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    #mobile-menu.is-active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    #mobile-menu.is-active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+
+/* Main body begins here.. */
+
+.main-body {
+    height: 65vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notifications-container {
+    background: none;
+    width: 30%;
+    height: 50vh;
+    border: 1px solid grey;
+}
+
+.notifications-container h2 {
+    text-align: center;
+}
+
+.chats-container {
+    background: none;
+    width: 30%;
+    height: 50vh;
+    border: 1px solid grey;
+    border-left: none;
+}
+
+.chats-container h2 {
+    text-align: center;
+}
+
+
+/* responsive main body styling begin here.. */
+
+@media screen and (max-width: 960px) {
+    .main-body {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .notifications-container {
+        width: 70%;
+    }
+    .chats-container {
+        width: 70%;
+        border: 1px solid grey;
+    }
+}
+
+
+/* footer styling starts here.. */
+
+footer {
+    background: rgb(0, 0, 18);
+}
+
+
+/* responsive contacts begin here.. */
+
+.responsive-contacts {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contacts-footer {
+    display: flex;
+    margin: 5px;
+}
+
+.contact__items {
+    display: none;
+    margin: 10px;
+    list-style: none;
+    font-size: 30px;
+}
+
+
+/* responsive contacts end here */
+
+.footer-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.links {
+    display: inline-block;
+}
+
+.links h4 {
+    color: white;
+}
+
+.links li {
+    list-style: none;
+    text-align: center;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    transition: .5s ease;
+}
+
+.links a:hover {
+    color: blue;
+    transition: .5s ease;
+}
+
+.logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+
+.logout a {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    border: 2px solid #044b6e;
+    text-transform: uppercase;
+    color: #111;
+    text-decoration: none;
+    font-weight: 600px;
+    font-size: 20px;
+    transition: .5s ease-in-out;
+}
+
+.logout a:hover {
+    color: white;
+    transition: .5s ease-in-out;
+}
+
+.logout a::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% - 12px);
+    background: rgb(0, 0, 18);
+    transition: 0.5s ease-in-out;
+    transform: scaleY(1);
+    transition-delay: .5s;
+}
+
+.logout a:hover::before {
+    transform: scaleY(0);
+    border: 2px solid red;
+    background: #044b6e;
+}
+
+.logout a::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: -2px;
+    height: calc(100% + 4px);
+    width: calc(100% - 12px);
+    background: rgb(0, 0, 18);
+    transition: 0.5s ease-in-out;
+    transform: scaleX(1);
+}
+
+.logout a:hover::after {
+    transform: scaleX(0);
+}
+
+.logout a span {
+    position: relative;
+    z-index: 3;
+}
+
+
+/* contacts styling begins here.. */
+
+.contacts h4 {
+    color: white;
+    text-align: center;
+}
+
+.contacts li {
+    color: white;
+    list-style: none;
+    font-style: italic;
+}
+
+.contacts-icons {
+    display: flex;
+}
+
+.icons {
+    margin: 10px;
+    color: blue;
+    font-size: 20px;
+}
+
+.icons a:hover {
+    color: white;
+}
+
+.copyright {
+    text-align: center;
+    color: white;
+}
+
+
+/* making footer responsive */
+
+@media screen and (max-width: 960px) {
+    .contact__items {
+        display: flex;
+        margin: 10px;
+        list-style: none;
+    }
+    .links {
+        display: none;
+    }
+    .contacts {
+        display: none;
+    }
+    .logout {
+        display: none;
+    }
+}

@@ -1,0 +1,120 @@
+{%extends 'base2.html'%}
+{%block style%}
+
+<style type="text/css">
+	.commentdetail-container{
+		background: rgb(0, 0, 20);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: safe start;
+		width: 100%;
+		min-height: 100vh;
+		color: linen;
+		margin-top: 50px;
+	}
+
+	.comment-detail-body{
+		background: rgba(0, 0, 58, 0.5);
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-around;
+		min-height: 15vh;
+		width: 70%;
+		padding: 7px;
+		margin-top: 15px;
+	}
+
+	.reply-container{
+		margin-top: 15px;
+		width: 90%;
+		min-height: 50vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: safe start;
+		align-items: center;
+	}
+
+	.reply-body{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		background: rgba(58, 0, 0, 0.5);
+		min-height: 15vh;
+		width: 80%;
+		margin-top: 15px;
+		padding: 7px;
+		position: relative;
+	}
+	.reply-form{
+		display: flex;
+		flex-direction: column;
+		margin-top: 12px;
+		margin-bottom: 40px;
+		width: 60%;
+	}
+	.reply-btn{
+		height: 45px;
+		width: 100%;
+		background: rgba(0, 0, 58, 0.5);
+		border: none;
+		color: linen;
+		font-size: 16px;
+		margin-top: 1px;
+	}
+	.reply-btn:hover{
+		color: teal;
+	}
+
+	@media screen and (max-width: 778px){
+		.comment-detail-body{
+			width: 90%;
+			font-size: 14px;
+		}
+
+		.reply-body{
+			width: 90%;
+			font-size: 14px;
+		}
+		.reply-form{
+			width: 80%;
+			font-size: 14px;
+		}
+		.reply-btn{
+			font-size: 14px;
+		}
+	}
+</style>
+
+{%endblock%}
+
+{%block content%}
+<div class="commentdetail-container">
+
+	<section class="comment-detail-body">
+		<span style="color:teal">{{comment_detail.author}}</span>
+		<span>{{comment_detail.body}}</span>
+		<span>{{comment_detail.timestamp}}</span>	
+	</section>
+
+	<section class="reply-container">
+		{%for reply in my_replies%}
+            
+        <div class="reply-body">
+            <span>{{reply.body}}</span>
+            <span style="color:teal">{{reply.author}}</span>
+            <span>{{reply.timestamp}}</span>
+        </div>
+
+        {%endfor%}
+	</section>
+
+	<form method="POST" class="reply-form">
+        {%csrf_token%}
+    	{{form.body}}
+    <button type="submit" class="reply-btn">Reply</button>
+    </form>
+	
+</div>
+{%endblock%}

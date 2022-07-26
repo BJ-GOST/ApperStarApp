@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ApperstarStudios</title>
+    {%load static%}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
+    font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+</head>
+
+<body>
+
+<!-- nav bar session -->
+{% if request.user.is_authenticated%}
+
+<link rel="stylesheet" href="{% static 'client.css' %}">
+<div class="nav">
+        <div class="logo">
+            <a href="Client.html"><img src="{%static 'Apper.png'%}" alt="ApperstarLogo"></a>
+        </div>
+        <div class="account">
+            <div class="account-container">
+                <span>Hello {{request.user}}<i class="fa fa-chevron-circle-down"></i></span>
+                <div class="drop-content">
+                    <a href="{%url 'logout'%}" class="logout-btn">Logout</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="navbar__container">
+
+        <div class="navbar__toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="navbar__menu">
+            <li class="navbar__items">
+                <a href="{%url 'blogs'%}" class="navbar__links" id="home-page"> Home</a>
+            </li>
+            <li class="navbar__items">
+                <a href="{%url 'jobs' user.id%}" class="navbar__links" id="about-page">My Jobs</a>
+            </li>
+            <li class="navbar__items">
+                <a href="{%url 'my-notifications' user.id %}" class="navbar__links" id="services-page">Notifications</a>
+            </li>
+            <li class="navbar__items">
+                <a href="notifications.html" class="navbar__links" id="blog-page">Chats</a>
+            </li>
+            <li class="navbar__items">
+                <a href="#contacts" class="navbar__links" id="blog-page">Contacts</a>
+            </li>
+
+        </ul>
+
+    </div>
+    <hr>
+    <div class="main-body"></div>
+    <footer>
+        <div class="responsive-contacts">
+            <ul class="contacts-footer">
+                <li class="contact__items">
+                    <a href="+254114766589" class="contact__links"><i class="fa fa-phone-square"></i> </a>
+                </li>
+                <li class="contact__items">
+                    <a href="https://www.facebook.com/ApperstarStudios" class="contact__links"><i class="fa fa-facebook-square"></i> </a>
+                </li>
+                <li class="contact__items">
+                    <a href="https://wa.me/0114766589" class="contact__links"><i class="fa fa-whatsapp"></i> </a>
+                </li>
+
+                <li class="contact__items">
+                    <a href="https://www.twitter.com/AppersterStudios" class="contact__links"><i class="fa fa-twitter"></i> </a>
+                </li>
+                <li class="contact__items">
+                    <a href="mailto:apperstarstudios@gmail.com" class="contact__links"><i class="fa fa-envelope"></i> </a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="footer-main">
+            <div class="links">
+                <h4>Important Links</h4>
+                <ul class="footer-links">
+                    <li>
+                        <a href="{%url 'landing'%}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'jobs' user.id%}">Jobs</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'my-notifications' user.id %}">Notifications</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="logout">
+                <a href="{%url 'logout'%}" class="log-out"><span>Logout</span></a>
+            </div>
+            <div class="contacts">
+                <h4>Contacts</h4>
+                <ul>
+                    <li>
+                        <p>ApperstarStudios</p>
+                    </li>
+                    <li>
+                        <p>Thika-Kenya</p>
+                    </li>
+                    <li>
+                        <p>Bima02 room 22</p>
+                    </li>
+
+                </ul>
+                <ul class="contacts-icons" id="contacts">
+                    <li class="icons">
+                        <a href="+254114766589" class="contact__links"><i class="fa fa-phone-square"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="https://www.facebook.com/ApperstarStudios" class="contact__links"><i class="fa fa-facebook-square"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="https://wa.me/0114766589" class="contact__links"><i class="fa fa-whatsapp"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="https://www.linkedin.com/ApperstarStudios" class="contact__links"><i class="fa fa-linkedin-square"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="https://www.twitter.com/AppersterStudios" class="contact__links"><i class="fa fa-twitter"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="mailto:apperstarstudios@gmail.com" class="contact__links"><i class="fa fa-envelope"></i> </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="copyright">
+            <p>ApperstaStudios <i class="fa fa-copyright"></i>. All rights Reserved 2022</p>
+        </div>
+    </footer>
+    <script src=" {%static 'apper.js' %}"></script>
+
+
+{%else%}
+
+    <link rel="stylesheet" type="text/css" href="{%static 'apper.css'%}">
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo"><img src="{%static 'Apper.png'%}" alt="Home"></a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__items">
+                    <a href="#home" class="navbar__links" id="home-page">Home</a>
+                </li>
+                <li class="navbar__items">
+                    <a href="#about" class="navbar__links" id="about-page">About Us</a>
+                </li>
+                <li class="navbar__items">
+                    <a href="#services" class="navbar__links" id="services-page">Services</a>
+                </li>
+                <li class="navbar__items">
+                    <a href="#contacts" class="navbar__links" id="blog-page">Contacts</a>
+                </li>
+                <li class="navbar__btn">
+                    <a href="{%url 'register'%}" class="button" id="signup">Sign Up</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    <div id="particles-js"></div>
+    <div class="hero" id="home">
+        <div class="hero__container">
+            <h1 class="hero__heading">Apperstar<span>Studios</span></h1>
+            <p class="hero__description">Passionately Creating...</p>
+            <h2>FOR
+                <Span class="auto-type"></Span>
+            </h2>
+        </div>
+
+    </div>
+    <div class="contacts__info">
+
+        <ul class="contacts">
+            <li class="contact__items">
+                <a href="+254114766589" class="contact__links"><i class="fa fa-phone-square"></i> +254114766589</a>
+            </li>
+            <li class="contact__items">
+                <a href="https://www.facebook.com/ApperstarStudios" class="contact__links"><i class="fa fa-facebook-square"></i> Facebook</a>
+            </li>
+            <li class="contact__items">
+                <a href="https://wa.me/0114766589" class="contact__links"><i class="fa fa-whatsapp"></i> Whatsapp</a>
+            </li>
+            <li class="contact__items">
+                <a href="https://www.linkedin.com/ApperstarStudios" class="contact__links"><i class="fa fa-linkedin-square"></i> Linkedin</a>
+
+            </li>
+            <li class="contact__items">
+                <a href="https://www.twitter.com/AppersterStudios" class="contact__links"><i class="fa fa-twitter"></i> Twitter</a>
+            </li>
+            <li class="contact__items">
+                <a href="mailto:apperstarstudios@gmail.com" class="contact__links"><i class="fa fa-envelope"></i> Email</a>
+            </li>
+
+            <li class="contact__items">
+                <a href="{%url 'login'%}" class="buttonOrder" id="signup">Order Now</a>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- About section -->
+    <div class="about__page" id="about">
+
+        <div class="about__description">
+            <h2><img src="{%static 'Apper.png'%}" alt=""> </h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor optio itaque atque laboriosam ipsum non rem est earum? Aperiam consequuntur molestias, deleniti assumenda incidunt iste delectus quod placeat soluta inventore? Lorem ipsum dolor
+                sit, amet consectetur adipisicing elit. Fugit fugiat, quae possimus labore eum non necessitatibus nulla eos molestias distinctio maiores assumenda unde placeat fuga vero, quos culpa, cupiditate et. Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Laudantium tenetur, nisi maxime minima laborum, reiciendis dolorem ab porro ex ipsum ducimus voluptates doloribus odit cupiditate magni enim maiores odio et? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo
+                aliquid animi itaque labore fugiat maiores error, laudantium quae autem, deserunt molestiae ea velit rem amet nesciunt, perspiciatis impedit corporis delectus.
+            </p>
+            <!--vision  goes here...  -->
+            <div class="vision-mission">
+                <div class="vision-container">
+                    <button class="vision">Our Vision <i class="fa fa-arrow-circle-o-right"></i></button>
+                    <div class="scroller">
+                        <span>coding <br> Art <br> Intriguing <br> Challenging</span>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- Mision goes here... -->
+            <div class="vision-mission">
+                <div class="vision-container">
+                    <h1 class="vision">Our Mission <i class="fa fa-arrow-circle-o-right"></i></h1>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae commodi dolore sed sequi voluptatibus ducimus mollitia? Quia consequatur qui voluptatum non eius quisquam, perspiciatis assumenda labore aliquam et, rerum magnam.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- image slider begins here -->
+        <div class="images">
+            <div class="slides">
+                <!-- radio buttons begin here -->
+                <input type="radio" name="radio__btn" id="radio1">
+                <input type="radio" name="radio__btn" id="radio2">
+                <input type="radio" name="radio__btn" id="radio3">
+                <input type="radio" name="radio__btn" id="radio4">
+                <input type="radio" name="radio__btn" id="radio5">
+                <input type="radio" name="radio__btn" id="radio6">
+                <!-- radio buttons ends here -->
+                <!-- slide images begins here -->
+                <div class="slide first">
+                    <img src="{%static 'laptop.jpg'%}" alt="clock image">
+                </div>
+                <div class="slide">
+                    <img src="{%static 'coder.jpg'%}" alt="coder">
+                </div>
+                <div class="slide">
+                    <img src="{%static 'coding.jpg'%}" alt="coder">
+                </div>
+                <div class="slide">
+                    <img src="{%static 'networking.jpg'%}" alt="coder">
+                </div>
+                <div class="slide">
+                    <img src="{%static 'notes.jpg'%}" alt="coder">
+                </div>
+                <div class="slide">
+                    <img src="{%static 'programmer.jpg'%}" alt="coder">
+                </div>
+                <!-- slide images end here -->
+                <!-- automatic navigation begins here -->
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                    <div class="auto-btn4"></div>
+                    <div class="auto-btn5"></div>
+                    <div class="auto-btn6"></div>
+                </div>
+                <!-- manual navigation begin here -->
+
+
+            </div>
+            <div class="navigation-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+                <label for="radio5" class="manual-btn"></label>
+                <label for="radio6" class="manual-btn"></label>
+            </div>
+            <!-- <img src="images/networking.jpg" alt="about us"> -->
+        </div>
+
+
+
+    </div>
+
+
+    <!-- Services body begins here -->
+    <div class="services" id="services">
+
+        <div class="services-containers">
+            <h2>Websites creation</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam possimus officia voluptatibus aliquam quae excepturi, deleniti laudantium. Voluptates harum nisi, impedit accusantium a labore dolores facilis eos quidem quaerat sit!</p>
+            <img src="{%static 'web.jpg'%}" alt="website image">
+        </div>
+        <div class="services-containers">
+            <h2>Web Applications</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime qui dicta fuga distinctio at alias, nobis perferendis pariatur reprehenderit provident? Accusamus praesentium quaerat ipsum eos alias culpa, laborum cumque impedit.</p>
+            <img src="{%static 'webApp.png'%}" alt="webApp">
+        </div>
+        <div class="services-containers">
+            <h2>Desktop Applications</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eos nesciunt quam enim ea hic sint consequatur sit tenetur, sequi delectus animi cupiditate aut asperiores ut voluptatem reiciendis eligendi veritatis minima.</p>
+            <img src="{%static 'desktop.png'%}" alt="">
+        </div>
+        <div class="services-containers">
+            <h2>Mobile Applications</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore totam ex non neque est omnis porro unde at quas, minus rem incidunt, reiciendis libero reprehenderit nobis magnam ratione eos dolorem.</p>
+            <img src="{%static 'mobile.jpg'%}" alt="">
+        </div>
+        <div class="services-containers">
+            <h2>Graphic Design</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam sequi illum repellat ratione excepturi esse saepe quam minus aliquam? Suscipit quia, porro voluptatibus veniam unde deleniti reprehenderit eos laborum delectus.</p>
+            <img src="{%static 'graphic.jpg'%}" alt="">
+        </div>
+        <div class="services-containers">
+            <h2>Social Media Administration</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus maiores consequuntur corporis odit obcaecati itaque nesciunt quis totam nihil, amet explicabo. Eveniet, aliquid aut enim repudiandae a officiis deserunt perferendis.</p>
+            <img src="{%static 'social.jpg'%}" alt="">
+        </div>
+    </div>
+
+    <!-- Footer script begin here.. -->
+
+    <footer>
+        <div class="responsive-contacts">
+            <ul class="contacts-footer">
+                <li class="contact-items">
+                    <a href="+254114766589" class="contact__links"><i class="fa fa-phone-square"></i> </a>
+                </li>
+                <li class="contact-items">
+                    <a href="https://www.facebook.com/ApperstarStudios" class="contact__links"><i class="fa fa-facebook-square"></i> </a>
+                </li>
+                <li class="contact-items">
+                    <a href="https://wa.me/0114766589" class="contact__links"><i class="fa fa-whatsapp"></i> </a>
+                </li>
+                <li class="contact-items">
+                    <a href="https://www.linkedin.com/ApperstarStudios" class="contact__links"><i class="fa fa-linkedin-square"></i> </a>
+
+                </li>
+                <li class="contact-items">
+                    <a href="https://www.twitter.com/AppersterStudios" class="contact__links"><i class="fa fa-twitter"></i> </a>
+                </li>
+                <li class="contact-items">
+                    <a href="mailto:apperstarstudios@gmail.com" class="contact__links"><i class="fa fa-envelope"></i> </a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="footer-main">
+            <div class="links">
+                <h4>Important Links</h4>
+                <ul class="footer-links">
+                    <li>
+                        <a href="Client.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="Client.html">Jobs</a>
+                    </li>
+                    <li>
+                        <a href="Client.html">New Job</a>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="logout">
+                <a href="{%url 'login'%}" class="log-out"><span>Sign In</span></a>
+            </div>
+            <div class="contacts-foot">
+                <h4>Contacts</h4>
+                <ul>
+                    <li>
+                        <p>ApperstarStudios</p>
+                    </li>
+                    <li>
+                        <p>Thika-Kenya</p>
+                    </li>
+                    <li>
+                        <p>Bima02 room 22</p>
+                    </li>
+
+                </ul>
+                <ul class="contacts-icons" id="contacts">
+                    <li class="icons">
+                        <a href="+254114766589" class="contact__links"><i class="fa fa-phone-square"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="https://www.facebook.com/ApperstarStudios" class="contact__links"><i class="fa fa-facebook-square"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="https://wa.me/0114766589" class="contact__links"><i class="fa fa-whatsapp"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="https://www.linkedin.com/ApperstarStudios" class="contact__links"><i class="fa fa-linkedin-square"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="https://www.twitter.com/AppersterStudios" class="contact__links"><i class="fa fa-twitter"></i> </a>
+                    </li>
+                    <li class="icons">
+                        <a href="mailto:apperstarstudios@gmail.com" class="contact__links"><i class="fa fa-envelope"></i> </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="copyright">
+            <p>ApperstaStudios <i class="fa fa-copyright"></i>. All rights Reserved 2022</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="{%static 'apper.js'%}"></script>
+    <script src="{%static 'particles.min.js'%}"></script>
+    <script src="{%static 'app.js'%}"></script>
+
+    {%endif%}
+</body>
+
+</html>

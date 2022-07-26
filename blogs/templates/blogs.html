@@ -1,0 +1,227 @@
+{%extends 'base2.html'%}
+{%block style%}
+{%load static%}
+<style type="text/css">
+
+	.main-blog-container{
+		width: 100%;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		background: rgba(0, 0, 20);
+		margin-top: 50px;
+	}
+
+	.top-blog-container{
+		width: 100%;
+		min-height: 20vh;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		color: linen;
+	}
+
+	.featured-blog{
+		width: 95%;
+		height: 60vh;
+		background-image: url('{{display_blog.blog_pic.url}}');
+		background-size: 100% 100%;
+		position: relative;
+		border-bottom: 1px solid linen;
+	}
+	.featured-blog-info{
+		background: rgb(0, 0, 20);
+		color: linen;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-around;
+		position: absolute;
+		bottom: 0px;
+		width: 100%;
+		min-height: 30vh;
+		padding-left: 7px;
+	}
+	.blogs-container{
+		width: 100%;
+		min-height: 90vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: safe start;
+		margin-bottom: 40vh;
+		margin-top: 50px;
+		position: relative;
+	}
+	.blog-body{
+		width: 70%;
+		min-height: 40vh;
+		border-radius: 5px;
+		background: rgba(0, 0, 58, 0.5);
+		display: flex;
+		flex-direction: row;
+		color: linen;
+		align-items: center;
+		margin-top: 10px;
+
+	}
+
+	.thumbnail{
+		width: 30%;
+		height: 25vh;
+		margin-left: 7px;
+	}
+	.image-thumbnail{
+		width: 70%;
+		height: 25vh;
+	}
+	.blog-info{
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-around;
+		color: linen;
+		height: 25vh;
+		width: 70%;
+	}
+	.blog-links{
+		text-decoration: none;
+		color: gold;
+	}
+	.blog-links:hover{
+		color: teal;
+	}
+	.blog-form-input{
+		height: 50px;
+		width: 250px;
+		background: transparent;
+		color: linen;
+		text-align: center;
+		font-size: 16px;
+		border: 1px solid linen;
+	}
+	.blog-form-btn{
+		height: 50px;
+		width: 100px;
+		font-size: 16px;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		margin-right: 7px;
+		border: 0px;
+	}
+
+	.blog-form-btn:hover{
+		color: teal;
+	}
+
+	@keyframes jump{
+		from{top: 599px;}
+		to{top: 400px;}
+
+	}
+
+	#starfish{
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		top: 600px;
+		left: 617px;
+		animation-name: jump;
+		animation-duration: 4s;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+
+	@media screen and (max-width: 778px){
+		.top-blog-container{
+			flex-direction: column;
+			min-height: 40vh;
+			justify-content: space-around;
+		}
+		.blog-body{
+			width: 100%;
+		}
+		.blog-form-btn{
+			width: 80px;
+			font-size: 14px;
+		}
+		.blog-form-input{
+			width: 200px;
+		}
+		.image-thumbnail{
+			width: 80%;
+		}
+		.links{
+			display: flex;
+		}
+		#starfish{
+			left: 110px;
+		}
+	}
+
+
+</style>
+
+{%endblock%}
+
+{%block content%}
+
+<div class="main-blog-container">
+
+	<div class="top-blog-container">
+		<h2 class="logo">Techify with ApperStar</h2>
+		<form method="post">
+			{%csrf_token%}
+			<input type="text" name="" class="blog-form-input" placeholder="Search blogs">
+			<button type="submit" class="blog-form-btn">Search</button>
+		</form>
+	</div>
+	{%if blogs%}
+	<div class="featured-blog" id="fb" data-bg="{{display_blog.blog_pic.url}}">
+		<section class="featured-blog-info">
+			<span>{{display_blog.title}}</span>
+			<span>{{display_blog.content|striptags|truncatechars:200}}...</span>
+			<span style="color:teal">By {{display_blog.author}}, {{display_blog.timestamp}}</span>	
+			<a href="{%url 'blogdetail' display_blog.id%}" class="blog-links">Read On...</a>
+		</section>
+	</div>
+
+
+	<div class="blogs-container">
+
+		{%for blog in blogs%}
+		<div class="blog-body">
+			<section class="thumbnail">
+				<img src="{{blog.blog_pic.url}}" class="image-thumbnail">
+			</section>
+			<section class="blog-info">
+				<span>{{blog.content|striptags|truncatechars:200}}...</span>
+				<span>{{blog.timestamp}}</span>
+				<span style="color:teal;">By {{blog.author}}</span>
+				<a href="{%url 'blogdetail' blog.id %}" class="blog-links">Read On...</a>
+			</section>
+		</div>
+	{%endfor%}
+
+	{%else%}
+
+	<div>
+		<img src="{%static 'star.svg'%}" id='starfish'>
+		<p style="color:teal;">No blogs yet</p>
+	</div>
+
+
+	{%endif%}	
+	</div>
+	
+
+
+</div>
+
+
+
+
+{%endblock%}

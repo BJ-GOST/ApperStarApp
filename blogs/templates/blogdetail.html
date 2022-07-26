@@ -1,0 +1,190 @@
+{%extends 'base2.html'%}
+{%block style%}
+
+<style type="text/css">
+	.blogdetail-container{
+		min-height: 100vh;
+		width: 100%;
+		background: rgb(0, 0, 20);
+		margin-top: 50px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		color: linen;
+	}
+	.blogdetail-top{
+		width: 90%;
+		min-height: 15vh;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+	}
+	.blogdetail-pic{
+		width: 90%;
+		min-height: 60vh;
+		background-image: url('{{Blog.blog_pic.url}}');
+		background-size: 100% 100%;
+		margin-top: 10px;
+	}
+	.blogdetail-body{
+		width: 90%;
+		min-height: 50vh;
+		margin-top: 20px;
+	}
+
+	.comments-container{
+		margin-top: 15px;
+		width: 90%;
+		min-height: 50vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: safe start;
+		align-items: center;
+	}
+
+	.comment-body{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		background: rgba(0, 0, 58, 0.5);
+		min-height: 15vh;
+		width: 80%;
+		margin-top: 15px;
+		padding: 7px;
+		position: relative;
+	}
+	.reply-link{
+		text-decoration: none;
+		color: white;
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+	}
+	.reply-link:hover{
+		color: teal;
+	}
+	.comment-form{
+		display: flex;
+		flex-direction: column;
+		margin-top: 12px;
+		margin-bottom: 40px;
+		width: 60%;
+	}
+	.comment-btn{
+		height: 45px;
+		width: 100%;
+		background: rgba(0, 0, 58, 0.5);
+		border: none;
+		color: linen;
+		font-size: 16px;
+		margin-top: 1px;
+	}
+	.comment-btn:hover{
+		color: teal;
+	}
+
+	.like-btn{
+		height: 45px;
+		width: 100px;
+		background: rgba(0, 0, 58, 0.5);
+		border: none;
+		color: linen;
+		font-size: 16px;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.like-btn:hover{
+		color: teal;
+	}
+	.unlike-btn{
+		height: 45px;
+		width: 100px;
+		background: rgba(58, 0, 0, 0.5);
+		border: none;
+		color: linen;
+		font-size: 16px;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.unlike-btn:hover{
+		color: teal;
+	}
+
+	@media screen and (max-width: 778px){
+		.blogdetail-body{
+			width: 95%;
+			font-size: 14px;
+		}
+		.blogdetail-top{
+			flex-direction: column;
+		}
+		.comment-body{
+			width: 95%;
+			font-size: 14px;
+		}
+		.blog-title{
+			font-size: 14px;
+		}
+		.comment-form{
+			width: 80%;
+			font-size: 14px;
+		}
+	}
+</style>
+
+{%endblock%}
+
+{%block content%}
+
+<div class="blogdetail-container">
+
+	<section class="blogdetail-top">
+		<h2 class="blog-title">{{Blog.title}}</h2>
+		<span class="blog-title" style="color:teal">{{Blog.author}}</span>
+		<span class="blog-title">{{Blog.timestamp}}</span>
+	</section>
+
+	<section class="blogdetail-pic"></section>
+
+	<section class="blogdetail-body">
+		{{Blog.content|safe}}
+
+		<form action="{%url 'like-blog'%}" method="post">
+			{%csrf_token%}
+			<input type="hidden" name="blog_id" value="{{Blog.id}}">
+			{%if user not in Blog.liked.all%}
+			<button type="submit" class="like-btn">Like</button>
+			{%else%}
+			<button type="submit" class="unlike-btn">Unlike</button>
+			{%endif%}
+		</form>
+
+		<div class="like-counts">
+			<p>{{Blog.liked.all.count}} Likes</p>
+		</div>
+
+	</section>
+
+	<section class="comments-container">
+		{%for comment in my_comments%}
+			<div class="comment-body">
+				<span>{{comment.body}}</span>
+				<span style="color:teal">{{comment.author}}</span>
+				<span>{{comment.timestamp}}</span>
+				<a href="{%url 'comment_detail' comment.id%}" class="reply-link">Reply</a>
+			</div>
+		{%endfor%}
+
+		<form method="post" class="comment-form">
+			{%csrf_token%}
+			{{form.body}}
+			<input type="hidden" name="comment">
+			<button type="submit" class="comment-btn">Comment</button>
+		</form>
+	</section>
+
+</div>
+
+{%endblock%}

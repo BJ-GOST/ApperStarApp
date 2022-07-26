@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ApperStar write blog</title>
+	{%load static%}
+	{{form.media}}
+</head>
+<body>
+
+	<form method="post" enctype="multipart/form-data">
+		{%csrf_token%}
+		{{form}}
+		<button type="submit">Post</button>
+	</form>
+
+<script src="{% static 'tiny.js'%}"></script>
+
+</body>
+</html>
