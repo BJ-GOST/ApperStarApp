@@ -1,0 +1,52 @@
+{%extends 'base2.html'%}
+{%block style%}
+<style type="text/css">
+	.outer-container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		margin-top: 50px;
+		width: inherit;
+		min-height: 100vh;
+		background: rgba(0, 0, 20);
+
+	}
+	.container{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		background: rgba(0, 0, 58, 0.5);
+		width: 60%;
+		min-height: 50vh;
+		color: white;
+	}
+	.link{
+        	text-decoration: none;
+        	color: linear-gradient(120deg, #030011, #070125);
+        }
+    @media screen and (max-width: 700px){
+       	.container{
+        		width: 95%;
+        	}
+        }
+</style>
+{%endblock%}
+
+{%block content%}
+
+<div class="outer-container">
+<div class="container">
+	<p>Hello {{job_user}},</p>
+	<p>Your request for {{job_title}}(posted on {{job_date}}), was accepted on {{message.timestamp}} by {{message.notification.job.apper}} from
+	apperstar, you can contact the developers by clicking on <a href="#" class="link">Contacts</a>
+	and you can view the progress on your job by checking<a class="link" href="{%url 'job-detail' message.notification.job.id%}">{{job_title}}</a> page on your profile or by clicking here</p>
+
+	<span>Thankyou for choosing Apperstar, We value You</span>
+</div>
+</div>
+
+
+
+{%endblock%}

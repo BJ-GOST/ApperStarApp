@@ -1,0 +1,396 @@
+{%extends 'base.html'%}
+{%block style%}
+
+<style type="text/css">
+.container{
+		width: 100%;
+		min-height: 100vh;
+		background: rgb(0, 0, 20);
+		display: flex;
+		flex-direction: column;
+		justify-content: safe start;
+		align-items: center;
+	}
+	.big-box{
+		width: 90%;
+		min-height: 40vh;
+		text-align: left;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		margin-top: 10px;
+	}
+	.small-box-holder{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 100%;
+		min-height: 6vh;
+		margin-top: 10px;
+	}
+	.small-box{
+		width: 45%;
+		min-height: 5vh;
+		text-align: center;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		margin-top: 10px;
+		border-radius: 0px;
+	}
+	.module-container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 70%;
+		min-height: 70vh;
+		color: linen;
+	}
+	.module-body{
+		display: flex;
+		flex-direction: row;
+		width: 80%;
+		min-height: 10vh;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		margin-top: 10px;
+	}
+	.module-name{
+		border-right: solid 2px tan;
+		width: 30%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		overflow: hidden;
+	}
+	.module-desc{
+		border-right: solid 2px tan;
+		width: 50%;
+		margin-left: 1px;
+		overflow: hidden;
+	}
+	.module-complete{
+		width: 20%;
+		margin-left: 1px;
+		overflow: hidden;
+	}
+	.schedule-form{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		width: 80%;
+		min-height: 50vh;
+		margin-top: 30px;
+	}
+	.btn-container{
+		display: flex;
+		flex-direction: row;
+		align-items: left;
+		justify-content: space-evenly;
+		width: 90%;
+		min-height: 20vh;
+	}
+	.btn{
+		height: 10vh;
+		width: 100%;
+		background: red;
+		color: linen;
+		border: 0px;
+	}
+	.btn:hover{
+		color: blue;
+	}
+	.red{
+		background: red;
+	}
+	.red:hover{
+		color: blue;
+	}
+	@media screen and (max-width: 778px){
+		.big-box{
+			width: 100%;
+		}
+		.small-box{
+			width: 90%;
+		}
+		.small-box-holder{
+			flex-direction: column;
+		}
+		.module-container{
+			width: 100%;
+		}
+		.module-body{
+			width: 100%;
+		}
+	}
+</style>
+
+
+
+{%endblock%}
+
+{%block content%}
+
+
+{%if job.category == 'Web Development'%}
+
+<div class="container">
+
+	<h4>Job Scheduling</h4>
+
+	<div class="small-box-holder">
+		<section class="small-box">Client: {{job.user}}</section>
+		<section class="small-box">Company: {{job.user.salesName}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{job.category}}</section>
+		<section class="small-box">Title: {{job.title}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{job.purpose}}</section>
+		<section class="small-box">Other purpose: {{job.other}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{job.pages}}</section>
+		<section class="small-box">Theme: {{job.theme}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Job Progress: {{percentage_completed}}%</section>
+	</div>
+	
+
+	<section class="big-box">Description: {{job.description}}</section>
+	<section class="big-box">Features: {{job.features}}</section>
+
+
+	<div class="module-container">
+		<p>Job Modules</p>
+		<p>Completed</p>
+		{%for module in complete_modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">Done</span>
+		</section>
+		{%endfor%}
+
+		<p>Incomplete</p>
+		{%for module in incomplete_modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">
+				<form method="post" action="{%url 'complete'%}">
+					{%csrf_token%}
+					<input type="hidden" name="schedule_id" value="{{module.id}}">
+					<button class="btn">Finish</button>
+				</form>
+			</span>
+		</section>
+		
+		{%endfor%}
+
+	</div>
+
+
+{%elif job.category == 'Information Systems Development'%}
+
+<div class="container">
+
+	<h4>Job Scheduling</h4>
+
+	<div class="small-box-holder">
+		<section class="small-box">Client: {{job.user}}</section>
+		<section class="small-box">Company: {{job.user.salesName}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{job.category}}</section>
+		<section class="small-box">Title: {{job.title}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{job.purpose}}</section>
+		<section class="small-box">Other purpose: {{job.other}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{job.pages}}</section>
+		<section class="small-box">Theme: {{job.theme}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Job Progress: {{percentage_completed}}%</section>
+	</div>
+	
+
+	<section class="big-box">Description: {{job.description}}</section>
+	<section class="big-box">Features: {{job.features}}</section>
+
+
+	<div class="module-container">
+		<p>Job Modules</p>
+		<p>Completed</p>
+		{%for module in complete_modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">Done</span>
+		</section>
+		{%endfor%}
+
+		<p>Incomplete</p>
+		{%for module in incomplete_modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">
+				<form method="post" action="{%url 'complete'%}">
+					{%csrf_token%}
+					<input type="hidden" name="schedule_id" value="{{module.id}}">
+					<button class="btn">Finish</button>
+				</form>
+			</span>
+		</section>
+		
+		{%endfor%}
+
+	</div>
+
+
+{%elif job.category == 'Graphics Design'%}
+
+<div class="container">
+
+	<h4>Job Scheduling</h4>
+
+	<div class="small-box-holder">
+		<section class="small-box">Client: {{job.user}}</section>
+		<section class="small-box">Company: {{job.user.salesName}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{job.category}}</section>
+		<section class="small-box">Title: {{job.title}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{job.purpose}}</section>
+		<section class="small-box">Other purpose: {{job.other}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{job.pages}}</section>
+		<section class="small-box">Theme: {{job.theme}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Job Progress: {{percentage_completed}}%</section>
+	</div>
+	
+
+	<section class="big-box">Description: {{job.description}}</section>
+	<section class="big-box">Features: {{job.features}}</section>
+
+
+	<div class="module-container">
+		<p>Job Modules</p>
+		<p>Completed</p>
+		{%for module in complete_modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">Done</span>
+		</section>
+		{%endfor%}
+
+		<p>Incomplete</p>
+		{%for module in incomplete_modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">
+				<form method="post" action="{%url 'complete'%}">
+					{%csrf_token%}
+					<input type="hidden" name="schedule_id" value="{{module.id}}">
+					<button class="btn">Finish</button>
+				</form>
+			</span>
+		</section>
+		
+		{%endfor%}
+
+	</div>
+
+{%else%}
+
+
+<div class="container">
+
+	<h4>Job Scheduling</h4>
+
+	<div class="small-box-holder">
+		<section class="small-box">Client: {{job.user}}</section>
+		<section class="small-box">Company: {{job.user.salesName}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{job.category}}</section>
+		<section class="small-box">Title: {{job.title}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{job.purpose}}</section>
+		<section class="small-box">Other purpose: {{job.other}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{job.pages}}</section>
+		<section class="small-box">Theme: {{job.theme}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Job Progress: {{percentage_completed}}%</section>
+	</div>
+	
+
+	<section class="big-box">Description: {{job.description}}</section>
+	<section class="big-box">Features: {{job.features}}</section>
+
+
+	<div class="module-container">
+		<p>Job Modules</p>
+		<p>Completed</p>
+		{%for module in complete_modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">Done</span>
+		</section>
+		{%endfor%}
+
+		<p>Incomplete</p>
+		{%for module in incomplete_modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">
+				<form method="post" action="{%url 'complete'%}">
+					{%csrf_token%}
+					<input type="hidden" name="schedule_id" value="{{module.id}}">
+					<button class="btn">Finish</button>
+				</form>
+			</span>
+		</section>
+		
+		{%endfor%}
+
+	</div>
+{%endif%}
+
+
+{%endblock%}

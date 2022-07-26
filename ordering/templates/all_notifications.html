@@ -1,0 +1,95 @@
+{%extends 'base.html'%}
+
+{%block style%}
+<style type="text/css">
+	.outer-container{
+		width: inherit;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin-top: 50px;
+	}
+	.container{
+		width: 50%;
+		min-height: 70vh;
+		background: rgb(0, 0, 20);
+		display: flex;
+		flex-direction: column;
+		justify-content: safe start;
+		align-items: center;
+		color: linen;
+	}
+	.notification{
+		width: 70%;
+		min-height: 20vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		border-radius: 5px;
+		margin-top: 10px;
+	}
+	.btn{
+        	background: linen;
+        	color: var(--apperBlack);
+        	height: 40px;
+        	width: 100px;
+        	border: none;
+        	border-radius: 5px;
+     }
+     .btn:hover{
+     		background: var(--apperBlack);
+     		color: linen;
+     }
+
+     .cl{
+     	color:linear-gradient(120deg, #030011, #070125);
+     }
+
+     @media screen and (max-width: 778px){
+        	.outer-container{
+        		flex-direction: column;
+        		min-height: 100vh;
+        		justify-content: space-around;
+        	}
+        	.container{
+        		width: 100%;
+        		margin-top: 10px;
+        	}
+        	.notification{
+        		width: 90%;
+        	}
+        }
+</style>
+{%endblock%}
+
+{%block content%}
+
+<div class="outer-container">
+	<div class="container">
+		<h2>New Notifications</h2>
+		{%for notification in new_notifications%}
+		<section class="notification">
+			<p>{{notification.body}}</p>
+			<a href="{%url 'notification-detail' notification.id%}" class="link">View</a>
+		</section>
+		{%endfor%}
+	</div>
+
+	<div class="container">
+		<h2>Read Notifications</h2>
+		{%for notification in old_notifications%}
+		<section class="notification">
+			<p>{{notification.body}}</p>
+			<p>{{notification.job.title}}</p>
+			<p>{{notification.job.category}}</p>
+			<a href="{%url 'notification-detail' notification.id%}" class="link">View</a>
+		</section>
+		{%endfor%}
+	</div>
+</div>
+
+
+{%endblock%}

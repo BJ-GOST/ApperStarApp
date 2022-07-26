@@ -1,0 +1,253 @@
+{%extends 'base.html'%}
+{%block style%}
+
+<style type="text/css">
+	.container{
+		width: 100%;
+		min-height: 100vh;
+		background: rgba(0, 0, 20);
+		display: flex;
+		flex-direction: column;
+		justify-content: safe start;
+		align-items: center;
+	}
+	.big-box{
+		width: 90%;
+		min-height: 40vh;
+		text-align: left;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		margin-top: 10px;
+	}
+	.small-box-holder{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 100%;
+		min-height: 6vh;
+		margin-top: 10px;
+	}
+	.small-box{
+		width: 45%;
+		min-height: 5vh;
+		text-align: center;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		margin-top: 10px;
+		border-radius: 0px;
+	}
+	.btn-container{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 90%;
+		min-height: 20vh;
+	}
+	.btn{
+		height: 40px;
+		width: 70px;
+		background: var(--apperBlue);
+		color: linen;
+		border-radius: 5px;
+		border: 0px;
+	}
+	.btn:hover{
+		color: red;
+		height: 45px;
+		width: 75px;
+	}
+	.red{
+		background: red;
+	}
+	.red:hover{
+		color: blue;
+	}
+	@media screen and (max-width: 778px){
+		.small-box-holder{
+			flex-direction: column;
+		}
+		.small-box{
+			width: 90%;
+		}
+	}
+</style>
+
+
+{%endblock%}
+
+
+{%block content%}
+
+{%if notification.job.category == 'Web Development'%}
+
+<div class="container">
+	<div class="small-box-holder">
+		<section class="small-box">Cient: {{notification.user}}</section>
+		<section class="small-box">Company: {{notification.user.salesName}}</section>		
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{notification.job.category}}</section>
+		<section class="small-box">Title: {{notification.job.title}}</section>	
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{notification.job.purpose}}</section>
+		<section class="small-box">Other purpose: {{notification.job.other}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{notification.job.pages}}</section>
+		<section class="small-box">Theme: {{notification.job.theme}}</section>
+	</div>
+	
+	<section class="big-box">Description: {{notification.job.description}}</section>
+	<section class="big-box">Features: {{notification.job.features}}</section>
+
+	<div class="btn-container">
+		<form method="post" action="{%url 'accept'%}">
+			{%csrf_token%}
+			<input type="hidden" name="notification_id" value="{{notification.id}}">
+			<button class="btn">Accept</button>
+		</form>
+			
+		<form method="post" action="{%url 'deny'%}">
+			{%csrf_token%}
+			<input type="hidden" name="notification_id" value="{{notification.id}}">
+			<button class="btn red">Deny</button>
+		</form>
+	</div>
+
+</div>
+
+
+{%elif notification.job.category == 'Graphics Design'%}
+
+<div class="container">
+	<div class="small-box-holder">
+		<section class="small-box">Cient: {{notification.user}}</section>
+		<section class="small-box">Company: {{notification.user.salesName}}</section>		
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{notification.job.category}}</section>
+		<section class="small-box">Title: {{notification.job.title}}</section>	
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{notification.job.purpose}}</section>
+		<section class="small-box">Other purpose: {{notification.job.other}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{notification.job.pages}}</section>
+		<section class="small-box">Theme: {{notification.job.theme}}</section>
+	</div>
+	
+	<section class="big-box">Description: {{notification.job.description}}</section>
+	<section class="big-box">Features: {{notification.job.features}}</section>
+
+	<div class="btn-container">
+		<form method="post" action="{%url 'accept'%}">
+			{%csrf_token%}
+			<input type="hidden" name="notification_id" value="{{notification.id}}">
+			<button class="btn">Accept</button>
+		</form>
+			
+		<form method="post" action="{%url 'deny'%}">
+			{%csrf_token%}
+			<input type="hidden" name="notification_id" value="{{notification.id}}">
+			<button class="btn red">Deny</button>
+		</form>
+	</div>
+
+</div>
+
+{%elif notification.job.category == 'Information System Development'%}
+
+<div class="container">
+	<div class="small-box-holder">
+		<section class="small-box">Cient: {{notification.user}}</section>
+		<section class="small-box">Company: {{notification.user.salesName}}</section>		
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{notification.job.category}}</section>
+		<section class="small-box">Title: {{notification.job.title}}</section>	
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{notification.job.purpose}}</section>
+		<section class="small-box">Other purpose: {{notification.job.other}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{notification.job.pages}}</section>
+		<section class="small-box">Theme: {{notification.job.theme}}</section>
+	</div>
+	
+	<section class="big-box">Description: {{notification.job.description}}</section>
+	<section class="big-box">Features: {{notification.job.features}}</section>
+
+	<div class="btn-container">
+		<form method="post" action="{%url 'accept'%}">
+			{%csrf_token%}
+			<input type="hidden" name="notification_id" value="{{notification.id}}">
+			<button class="btn">Accept</button>
+		</form>
+			
+		<form method="post" action="{%url 'deny'%}">
+			{%csrf_token%}
+			<input type="hidden" name="notification_id" value="{{notification.id}}">
+			<button class="btn red">Deny</button>
+		</form>
+	</div>
+
+</div>
+{%else%}
+
+<div class="container">
+	<div class="small-box-holder">
+		<section class="small-box">Cient: {{notification.user}}</section>
+		<section class="small-box">Company: {{notification.user.salesName}}</section>		
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{notification.job.category}}</section>
+		<section class="small-box">Title: {{notification.job.title}}</section>	
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{notification.job.purpose}}</section>
+		<section class="small-box">Other purpose: {{notification.job.other}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{notification.job.pages}}</section>
+		<section class="small-box">Theme: {{notification.job.theme}}</section>
+	</div>
+	
+	<section class="big-box">Description: {{notification.job.description}}</section>
+	<section class="big-box">Features: {{notification.job.features}}</section>
+
+	<div class="btn-container">
+		<form method="post" action="{%url 'accept'%}">
+			{%csrf_token%}
+			<input type="hidden" name="notification_id" value="{{notification.id}}">
+			<button class="btn">Accept</button>
+		</form>
+			
+		<form method="post" action="{%url 'deny'%}">
+			{%csrf_token%}
+			<input type="hidden" name="notification_id" value="{{notification.id}}">
+			<button class="btn red">Deny</button>
+		</form>
+	</div>
+
+</div>
+
+{%endif%}
+
+{%endblock%}

@@ -1,0 +1,118 @@
+{%extends 'base2.html' %}
+{%block style%}
+<style type="text/css">
+	:root{
+		--apperBlack: #030011;
+		--apperBlue: linear-gradient(120deg, #030011, #070125);
+	}
+
+	.form-container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		width: 100%;
+		min-height: 100vh;
+		margin-top: 50px;
+		background: rgb(0, 0, 20);
+		color: white;
+	}
+	.form{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		width: 100%;
+		min-height: 80vh;
+		margin-top: 50px;
+	}
+	.btn{
+		background: var(--apperBlue);
+		color: white;
+		height: 40px;
+		width: 100px;
+		border: 0px;
+		border-radius: 5px;
+		box-shadow: 2px 2px 2px 2px black;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.btn:hover{
+		background: var(--apperBlack);
+	}
+	.form-sect{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 10px;
+		width: 60%;
+	}
+	.form-title{
+		margin-top: 30px;
+	}
+
+	@media screen and (max-width: 778px){
+		.form-container{
+			width: 100%;
+		}
+		.form{
+			width: 100%;
+		}
+		.form-sect{
+			width: 90%;
+		}
+	}
+</style>
+
+{%endblock%}
+
+{%block content%}
+
+{% load crispy_forms_tags %}
+<div class="form-container">
+	<h2 class="form-title">Web Development</h2>
+	<form method="post" class="form">
+		{%csrf_token%}
+		<section class="form-sect">
+			<label>Job title</label>
+			{{form.title}}
+		</section>
+
+		<section class="form-sect">
+			<label>Job description</label>
+			{{form.description}}
+		</section>
+
+		<section class="form-sect">
+			<label>Purpose:</label>
+			{{form.purpose}}
+		</section>
+
+		<section class="form-sect">
+			<label>Other</label>
+			{{form.other}}
+		</section>
+
+		<section class="form-sect">
+			<label>Features</label>
+			{{form.features}}
+		</section>
+
+		<section class="form-sect">
+			<label>Pages</label>
+			{{form.pages}}
+		</section>
+
+		<section class="form-sect">
+			<label>Theme</label>
+			{{form.theme}}
+		</section>
+	
+		<button type="submit" class="btn">Create Job</button>
+	</form>
+</div>
+
+
+
+{%endblock%}

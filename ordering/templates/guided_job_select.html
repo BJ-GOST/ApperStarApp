@@ -1,0 +1,66 @@
+{%extends 'base2.html' %}
+{%block style%}
+<style type="text/css">
+:root{
+		--apperBlack: #030011;
+		--apperBlue: linear-gradient(120deg, #030011, #070125);
+}
+
+.outer-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: start;
+	width: 100%;
+	height: 100vh;
+	background: rgb(0, 0, 20);
+	margin-top: 50px;
+}
+.btn-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	background: transparent;
+	width: 50%;
+	height: 50vh;
+	margin-top: 50px;
+}
+.btn{
+		background: rgba(0, 0, 58, 0.5);
+		color: white;
+		min-height: 40px;
+		width: 200px;
+		border: 0px;
+		border-radius: 5px;
+		box-shadow: 2px 2px 2px 2px black;
+		color: white;
+		text-decoration: none;
+		text-align: center;
+		padding: 10px;
+}
+.btn:hover{
+	background: var(--apperBlack);
+}
+@media screen and (max-width: 778px){
+	.btn-container{
+		width: 70%;
+	}
+}
+</style>
+
+{%endblock%}
+
+{%block content%}
+<div class="outer-container">
+	<div class="btn-container">
+		<a href="{%url 'web-development' %}" class="btn">Web Development</a>
+		<a href="{%url 'graphics-design' %}" class="btn">Graphics Design</a>
+		<a href="{%url 'info-systems' %}" class="btn">Information Systems</a>
+		<a href="{%url 'app-development' %}" class="btn">MobileApp Development</a>
+	</div>
+</div>
+
+
+
+{%endblock%}

@@ -1,0 +1,198 @@
+{%extends 'base2.html'%}
+
+{%block style%}
+
+{%load static%}
+
+<style type="text/css">
+	:root{
+		--apperBlack: #030011;
+		--apperBlue: linear-gradient(120deg, #030011, #070125);
+	}
+
+	*::-webkit-scrollbar{
+    width: 10px;
+	}
+	*::-webkit-scrollbar-track{
+    background: transparent;
+	}
+
+	.outer-container{
+		width: inherit;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		margin-top: 50px;
+		min-height: 100vh;
+		background: rgba(0, 0, 20);
+
+	}
+	.container{
+		width: 50%;
+		min-height: 100vh;
+	   background: rgb(0, 0, 20);
+		display: flex;
+		flex-direction: column;
+		justify-content: safe start;
+		align-items: center;
+		color: linen;
+		overflow-y: scroll;
+	}
+	.notification{
+		width: 70%;
+		min-height: 25vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		border-radius: 5px;
+		margin-top: 15px;
+	}
+	.btn{
+        	background: linen;
+        	color: var(--apperBlack);
+        	height: 40px;
+        	width: 100px;
+        	border: none;
+        	border-radius: 5px;
+     }
+     .btn:hover{
+     		background: var(--apperBlack);
+     		color: linen;
+     }
+
+     .cl{
+     	color:linear-gradient(120deg, #030011, #070125);
+     }
+
+     .not-title{
+     	font-size: 18px;
+     }
+
+     @keyframes jump{
+		from{top: 350px;}
+		to{top: 200px;}
+
+	}
+
+	#starfish{
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		top: 600px;
+		left: 617px;
+		animation-name: jump;
+		animation-duration: 4s;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+	}
+
+     @media screen and (max-width: 778px){
+        	.outer-container{
+        		flex-direction: column;
+        		min-height: 100vh;
+        		justify-content: space-around;
+        		background: linen;
+        	}
+        	.container{
+        		width: 100%;
+        		margin-top: 10px;
+        	}
+        	.notification{
+        		width: 90%;
+        	}
+        	/* controls the size of the heading when responsive**/
+        	.not-title{
+        		font-size: 15px;
+        	}
+        	#starfish{
+				left: 110px;
+			}
+        }
+</style>
+
+{%endblock%}
+
+
+
+{%block content%}
+
+<div class="outer-container">
+
+
+
+	<div class="container notif-cont" data-notifications={{unviewed_messages.count}} id="notif-cont">
+
+		{%for message in unviewed_messages%}
+		<h2 class="not-title">New Notification</h2>
+		<div class="notification">
+			<p>Job: {{message.notification.job.title}}</p>
+			<p>{{message.body}}</p>
+			<p>{{message.timestamp}}</p>
+			<form method="post" action="{%url 'viewed'%}">
+				{%csrf_token%}
+				<input type="hidden" name="message_id" value="{{message.id}}">
+				<button type="submit" class="btn">View</button>
+			</form>
+		</div>
+		{%endfor%}
+		
+	</div>
+
+	
+
+	
+
+	{%if viewed_messages or unviewed_messages%}
+
+	<div class="container">
+		<h2 class="not-title">Viewed Notifications</h2>
+		{%for message in viewed_messages%}
+		<div class="notification">
+			<p>Job: {{message.notification.job.title}}</p>
+			<p>{{message.body}}</p>
+			<p>{{message.timestamp}}</p>
+			<form method="post" action="{%url 'viewed'%}">
+				{%csrf_token%}
+				<input type="hidden" name="message_id" value="{{message.id}}">
+				<button type="submit" class="btn">View</button>
+			</form>
+		</div>
+		{%endfor%}
+	</div>
+	{%else%}
+
+
+	<div class="container">
+		<div>
+			<img src="{%static 'star.svg'%}" id='starfish'>
+			<p style="color:teal; margin-top: 10px;">No Notifications yet</p>
+		</div>
+	</div>
+
+
+	{%endif%}
+
+</div>
+
+
+<script type="text/javascript">
+
+		var NotificationContainer = document.getElementById('notif-cont')
+		var Notifications = NotificationContainer.dataset.notifications
+		var NotifCont = document.getElementsByClassName('notif-cont')
+		var Outer = document.getElementsByClassName('outer-container')
+
+		if (Notifications == 0){
+			for(let i=0; i<NotifCont.length; i++){
+				NotifCont[i].style.display = 'none'
+			}
+			for(let x=0; x<Outer.length; x++){
+				Outer[x].style.justifyContent = 'space-around'
+			}
+		}
+
+</script>
+{%endblock%}

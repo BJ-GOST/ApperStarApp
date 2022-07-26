@@ -1,0 +1,146 @@
+{%extends 'base2.html'%}
+{%block style%}
+	{%load static%}
+	<link rel="stylesheet" href='{% static "dash.css" %}'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer></script>
+    <script src='{%static "dash.js" %}' defer></script>
+{%endblock%}
+
+{%block content%}
+ 
+<div class="dash-container">
+
+
+
+
+
+        <div class="dash-board-holder">
+
+            <div class="dash-board-v">
+                <div class="chart">
+                    <section class="dash-content" data-progress="{{progress}}" id="job-progress">Work progress</section>
+                    <canvas id="myChart"></canvas>
+                </div>
+
+                <div class="modules-info">
+                    <section class="dash-content">Modules</section>        
+                    
+                    {%for schedule in schedules%}
+                    <section class="module-body">
+                    	{{schedule.moduleName}}, {{schedule.description}}, {{schedule.completed}}
+                    </section>
+                    {%endfor%}
+                    
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="dash-board-holder">
+
+            <!-- this is the first info card that holds basic info about the project     -->
+            <div class="info">
+                <section class="dash-content">Job information</section>
+                <p class="para-content">
+                    <section class="cont"> <p class="info-tags">Title</p> {{job.title}}</section>
+                </p>
+                <p class="para-content">
+                    <section class="cont"><p class="info-tags">Date</p>{{job.timestamp}}</section>
+                </p>
+                <p class="para-content">
+                    <section class="cont"><p class="info-tags">Category</p>{{job.category}}</section>
+                </p>
+                <p class="para-content">
+                    <section class="cont"><p class="info-tags">Apper</p>{{job.apper}}</section>
+                </p>
+                <p class="para-content">
+                    <section class="cont"><p class="info-tags">Total Modules</p>
+                        {{Total}}
+                    </section>
+                </p>
+                
+            </div>
+
+            <!-- this is the second info card which also holds basic info about the project -->
+            {%if job.category == 'Web Development'%}
+            <div class="info">
+                <section class="dash-content">Web Development</section>
+                <p class="para-content">
+                    <section class="cont"> <p class="info-tags">Theme</p>{{job.theme}}</section>
+                </p>
+                <p class="para-content">
+                    <section class="cont"><p class="info-tags">Other</p>{{job.other}}</section>
+                </p>
+                <p class="para-content">
+                    <section class="cont"><p class="info-tags">Purpose</p>{{job.purpose}}</section>
+                </p>
+                <p class="para-content">
+                    <section class="cont"><p class="info-tags">Pages</p>{{job.pages}}</section>
+                </p>
+            </div>
+            {%elif job.category == 'Graphics Design'%}
+            <div class="info">
+                <section class="dash-content">Graphics Design</section>
+                <p class="para-content">
+                    <section class="cont"> <p class="info-tags">Theme</p>{{job.theme}}</section>
+                </p>
+                
+                <p class="para-content">
+                    <section class="cont"><p class="info-tags">Type</p>{{job.banner_type}}</section>
+                </p>
+            </div>
+
+            {%elif job.category == 'Information System Development'%}
+
+            <div class="info">
+                <section class="dash-content">Information Systems Development</section>
+                <p class="para-content">
+                    <section class="cont"> <p class="info-tags">System type</p>{{job.sys_type}}</section>
+                </p>
+                <p class="para-content">
+                    <section class="cont"><p class="info-tags">Modules</p>{{job.features}}</section>
+                </p>
+            </div>
+
+            {%else%}
+
+            <div class="info">
+                <section class="dash-content">Mobile Development</section>
+                <p class="para-content">
+                    <section class="cont"> <p class="info-tags">Purpose</p>{{job.descriptive_purpose}}</section>
+                </p>
+            </div>
+
+            {%endif%}
+
+        </div>
+
+
+
+
+
+        <div class="dash-board-holder">
+            <div class="dash-board-h">
+                <section class="dash-content">Job features</section>
+                <p class="para-content">
+                	{{job.features}}
+                </p>
+            </div>
+            <div class="dash-board-h">
+                <section class="dash-content">Job description</section>
+                {{job.description}}
+            </div>
+        </div>
+
+
+
+
+        <a href="{%url 'payment' %}" class="dash-link">Make Payment</a>
+    </div>
+    <!-- it all ends here folks -->
+
+{%endblock%}

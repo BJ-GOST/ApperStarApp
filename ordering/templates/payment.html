@@ -1,0 +1,69 @@
+{%extends 'base2.html'%}
+
+
+{%block style%}
+<style type="text/css">
+	.payment-container{
+		min-height: 100vh;
+		width: 100%;
+		background: rgb(0, 0, 20);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		margin-top: 50px;
+	}
+	.form-container{
+		min-height: 70vh;
+		width: 70%;
+		background: transparent;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+	}
+	input{
+		height: 10vh;
+		background: transparent;
+		color: gold;
+		width: 50%;
+		font-size: large;
+		border-radius: 5px;
+		text-align: center;
+		border: 1px solid white;
+	}
+
+	label{
+		color: linen;
+		font-size: 16px;
+	}
+
+	button{
+		background: rgb(75, 196, 51);
+		color: linen;
+		height: 50px;
+		width: 150px;
+		border: 0px;
+		border-radius: 5px;
+	}
+
+</style>
+{%endblock%}
+
+
+{%block content%}
+
+<div class="payment-container">
+	<form method="post" action="{%url 'mpesa'%}" class="form-container">
+		{%csrf_token%}
+		<label>Phone Number</label>
+		<input type="number" name="phone">
+		<label>Amount</label>
+		<input type="number" name="amount">
+		<button>Pay</button>
+	</form>
+</div>
+
+
+{%endblock%}
+ 

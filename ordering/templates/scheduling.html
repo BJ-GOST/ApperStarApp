@@ -1,0 +1,389 @@
+{%extends 'base.html'%}
+{%block style%}
+
+<style type="text/css">
+	.container{
+		width: 100%;
+		min-height: 100vh;
+		background: rgb(0, 0, 20);
+		display: flex;
+		flex-direction: column;
+		justify-content: safe start;
+		align-items: center;
+	}
+	.big-box{
+		width: 90%;
+		min-height: 40vh;
+		text-align: left;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		margin-top: 10px;
+	}
+	.small-box-holder{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 100%;
+		min-height: 6vh;
+		margin-top: 10px;
+	}
+	.small-box{
+		width: 45%;
+		min-height: 5vh;
+		text-align: center;
+		background: rgba(0, 0, 58, 0.5);
+		color: linen;
+		margin-top: 10px;
+	}
+	.module-container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 70%;
+		min-height: 70vh;
+	}
+	.module-body{
+		display: flex;
+		flex-direction: row;
+		width: 80%;
+		min-height: 10vh;
+		background: rgba(0, 0, 58, 0.5);		
+		margin-top: 10px;
+		color: linen;
+	}
+	.module-name{
+		border-right: solid 2px tan;
+		width: 30%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.module-desc{
+		border-right: solid 2px tan;
+		width: 50%;
+		margin-left: 1px;
+	}
+	.module-complete{
+		width: 20%;
+		margin-left: 1px;
+	}
+	.schedule-form{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		width: 80%;
+		min-height: 50vh;
+		margin-top: 30px;
+	}
+	.btn-container{
+		display: flex;
+		flex-direction: row;
+		align-items: left;
+		justify-content: space-evenly;
+		width: 90%;
+		min-height: 20vh;
+		position: relative;
+	}
+	.btn{
+		height: 40px;
+		width: 70px;
+		background: var(--apperBlue);
+		color: linen;
+		border-radius: 5px;
+		border: 0px;
+	}
+	.btn:hover{
+		color: red;
+		height: 45px;
+		width: 75px;
+	}
+	.red{
+		background: red;
+		position: absolute;
+		left: 650px;
+		margin-top: 10px;
+	}
+	.red:hover{
+		color: blue;
+	}
+	@media screen and (max-width: 778px){
+		.big-box{
+			width: 100%;
+		}
+		.small-box{
+			width: 90%;
+		}
+		.module-container{
+			width: 100%;
+		}
+		.small-box-holder{
+			flex-direction: column;
+		}
+		.red{
+			left: 180px;
+		}
+		.schedule-form{
+			width: 95%;
+		}
+	}
+</style>
+
+
+{%endblock%}
+
+
+
+
+{%block content%}
+
+{%if job.category == 'Web Development'%}
+
+<div class="container">
+	<h4>Job Scheduling</h4>
+
+	<div class="small-box-holder">
+		<section class="small-box">Client: {{job.user}}</section>
+		<section class="small-box">Company: {{job.user.salesName}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{job.category}}</section>
+		<section class="small-box">Title: {{job.title}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{job.purpose}}</section>
+		<section class="small-box">Other purpose: {{job.other}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{job.pages}}</section>
+		<section class="small-box">Theme: {{job.theme}}</section>
+	</div>
+	
+	<section class="big-box">Description: {{job.description}}</section>
+	<section class="big-box">Features: {{job.features}}</section>
+
+	<div class="module-container">
+		<p>Job Modules</p>
+		{%for module in modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">{{module.completed}}</span>
+		</section>
+		{%endfor%}
+
+		
+		<form method="post" class="schedule-form">
+			<p>Create New modules here</p>
+			{%csrf_token%}
+			{{form.moduleName}}
+			{{form.description}}
+			<button class="btn">Create</button>
+		</form>
+
+	</div>	
+</div>
+
+<div class="btn-container">
+		<form method="post" action="{%url 'schedule'%}">
+			{%csrf_token%}
+			<input type="hidden" name="job_id" value={{job.id}}>
+			<button class="btn red">Schedule</button>
+		</form>
+</div>
+
+
+
+{%elif job.category == 'Information Systems Development'%}
+
+
+<div class="container">
+	<h4>Job Scheduling</h4>
+
+	<div class="small-box-holder">
+		<section class="small-box">Client: {{job.user}}</section>
+		<section class="small-box">Company: {{job.user.salesName}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{job.category}}</section>
+		<section class="small-box">Title: {{job.title}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{job.purpose}}</section>
+		<section class="small-box">Other purpose: {{job.other}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{job.pages}}</section>
+		<section class="small-box">Theme: {{job.theme}}</section>
+	</div>
+	
+	<section class="big-box">Description: {{job.description}}</section>
+	<section class="big-box">Features: {{job.features}}</section>
+
+	<div class="module-container">
+		<p>Job Modules</p>
+		{%for module in modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">{{module.completed}}</span>
+		</section>
+		{%endfor%}
+
+		
+		<form method="post" class="schedule-form">
+			<p>Create New modules here</p>
+			{%csrf_token%}
+			{{form.moduleName}}
+			{{form.description}}
+			<button class="btn">Create</button>
+		</form>
+
+	</div>	
+</div>
+
+<div class="btn-container">
+		<form method="post" action="{%url 'schedule'%}">
+			{%csrf_token%}
+			<input type="hidden" name="job_id" value={{job.id}}>
+			<button class="btn red">Schedule</button>
+		</form>
+</div>
+
+
+{%elif job.category == 'Graphics Design'%}
+
+<div class="container">
+	<h4>Job Scheduling</h4>
+
+	<div class="small-box-holder">
+		<section class="small-box">Client: {{job.user}}</section>
+		<section class="small-box">Company: {{job.user.salesName}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{job.category}}</section>
+		<section class="small-box">Title: {{job.title}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{job.purpose}}</section>
+		<section class="small-box">Other purpose: {{job.other}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{job.pages}}</section>
+		<section class="small-box">Theme: {{job.theme}}</section>
+	</div>
+	
+	<section class="big-box">Description: {{job.description}}</section>
+	<section class="big-box">Features: {{job.features}}</section>
+
+	<div class="module-container">
+		<p>Job Modules</p>
+		{%for module in modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">{{module.completed}}</span>
+		</section>
+		{%endfor%}
+
+		
+		<form method="post" class="schedule-form">
+			<p>Create New modules here</p>
+			{%csrf_token%}
+			{{form.moduleName}}
+			{{form.description}}
+			<button class="btn">Create</button>
+		</form>
+
+	</div>	
+</div>
+
+<div class="btn-container">
+		<form method="post" action="{%url 'schedule'%}">
+			{%csrf_token%}
+			<input type="hidden" name="job_id" value={{job.id}}>
+			<button class="btn red">Schedule</button>
+		</form>
+</div>
+
+
+
+{%else%}
+
+
+<div class="container">
+	<h4>Job Scheduling</h4>
+
+	<div class="small-box-holder">
+		<section class="small-box">Client: {{job.user}}</section>
+		<section class="small-box">Company: {{job.user.salesName}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Category: {{job.category}}</section>
+		<section class="small-box">Title: {{job.title}}</section>
+	</div>
+
+	<div class="small-box-holder">
+		<section class="small-box">Purpose: {{job.purpose}}</section>
+		<section class="small-box">Other purpose: {{job.other}}</section>
+	</div>
+	
+	<div class="small-box-holder">
+		<section class="small-box">Pages: {{job.pages}}</section>
+		<section class="small-box">Theme: {{job.theme}}</section>
+	</div>
+	
+	<section class="big-box">Description: {{job.description}}</section>
+	<section class="big-box">Features: {{job.features}}</section>
+
+	<div class="module-container">
+		<p>Job Modules</p>
+		{%for module in modules%}
+		<section class="module-body">
+			<span class="module-name">{{module.moduleName}}</span>
+			<span class="module-desc">{{module.description}}</span>
+			<span class="module-complete">{{module.completed}}</span>
+		</section>
+		{%endfor%}
+
+		
+		<form method="post" class="schedule-form">
+			<p>Create New modules here</p>
+			{%csrf_token%}
+			{{form.moduleName}}
+			{{form.description}}
+			<button class="btn">Create</button>
+		</form>
+
+	</div>	
+</div>
+
+<div class="btn-container">
+		<form method="post" action="{%url 'schedule'%}">
+			{%csrf_token%}
+			<input type="hidden" name="job_id" value={{job.id}}>
+			<button class="btn red">Schedule</button>
+		</form>
+</div>
+
+
+
+
+{%endif%}
+
+
+
+
+
+{%endblock%}
