@@ -1,0 +1,1 @@
+web gunicorn apperstar.wsgi:application --log-file -
