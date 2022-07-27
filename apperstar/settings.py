@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)jgl12i5z790@kgjithdl3nd5ok5yzi)0=kiz5l-m28df-+f3n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['apperstar.herokuapp.com']
 AUTH_USER_MODEL = 'accounts.User'

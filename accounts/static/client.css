@@ -129,6 +129,7 @@
         padding: 0;
     }
     .navbar__menu {
+        background-color: linen;
         display: grid;
         grid-template-columns: auto;
         margin: 0;
@@ -140,7 +141,7 @@
         z-index: -1;
     }
     .navbar__menu.active {
-        background: #131313;
+        background: linen;
         top: 20%;
         opacity: 1;
         transition: all 0.5s ease;
@@ -148,6 +149,7 @@
         height: 60vh;
         font-size: 1.6rem;
     }
+    
     #navbar__logo {
         padding-left: 25px;
     }

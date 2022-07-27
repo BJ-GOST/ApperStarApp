@@ -104,6 +104,7 @@ body {
     }
     .navbar__menu {
         display: grid;
+        background-color: linen;
         grid-template-columns: auto;
         margin: 0;
         width: 100%;
