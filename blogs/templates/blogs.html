@@ -221,6 +221,16 @@
 	{%endif%}	
 	</div>
 	
+	<script type="text/javascript">
+		var topContainer = document.getElementsByClassName('top-blog-container')
+
+		for(let i=0; i<topContainer.length; i++){
+			if(topContainer[i].dataset.blogs = '0'){
+				topContainer[i].style.display = "none"
+			}
+		}
+	</script>
+
 
 
 </div>
