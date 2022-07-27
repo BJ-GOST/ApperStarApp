@@ -378,20 +378,27 @@ def payment_form(request):
 	return render(request, template_name)
 
 
-def mpesa(request):
+# request.build_absolute_uri(reverse('mpesa_stk_push_callback'))
+def payment(request):
 	cl = MpesaClient()
+	template_name = 'paySuccess.html'
 	if request.method == 'POST':
 		phone_number = request.POST.get('phone')
 		amount = int(request.POST.get('amount'))
 		account_reference = 'ABC001'
 		transaction_desc = 'Job payment'
-		callback_url = request.build_absolute_uri(reverse('mpesa_stk_push_callback'))
+		callback_url = 'https://darajambili.herokuapp.com/'
 		response = cl.stk_push(phone_number, amount, account_reference, transaction_desc, callback_url)
-		return HttpResponse(response)
+		return render(request, template_name)
 
 
 def stk_push_callback(request):
         data = request.body
         return(data)
 
+
+#this view will provide the user with information as we wait for the Mpesa API
+def easy_pay(request):
+	template_name = 'easy_pay.html'
+	return render(request, template_name)
 

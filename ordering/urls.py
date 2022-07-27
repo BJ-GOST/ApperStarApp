@@ -24,7 +24,8 @@ path('scheduled-job/<str:pk>/', views.scheduled_job_detail, name='scheduled-job-
 path('complete', views.complete, name='complete'),
 path('viewed', views.viewed, name='viewed'),
 path('search', views.search, name='search'),
-path('mpesa', views.mpesa, name='mpesa'),#payment url
+path('pay', views.payment, name='pay'),#payment url
 path('daraja/stk-push', views.stk_push_callback, name='mpesa_stk_push_callback'),
-path('payment', views.payment_form, name='payment')
+path('payment', views.payment_form, name='payment'),
+path('easy_pay', views.easy_pay, name='easy_pay')
 ]

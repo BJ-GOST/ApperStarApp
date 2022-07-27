@@ -46,6 +46,17 @@
 		border: 0px;
 		border-radius: 5px;
 	}
+	@media screen and (max-width: 778px){
+		.form-container{
+			width: 100%;
+		}
+		input{
+			width: 90%;
+		}
+		button{
+			width: 300px;
+		}
+	}
 
 </style>
 {%endblock%}
@@ -54,12 +65,12 @@
 {%block content%}
 
 <div class="payment-container">
-	<form method="post" action="{%url 'mpesa'%}" class="form-container">
+	<form method="post" action="{%url 'pay'%}" class="form-container">
 		{%csrf_token%}
 		<label>Phone Number</label>
-		<input type="number" name="phone">
+		<input type="number" name="phone" required>
 		<label>Amount</label>
-		<input type="number" name="amount">
+		<input type="number" name="amount" required>
 		<button>Pay</button>
 	</form>
 </div>

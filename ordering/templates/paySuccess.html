@@ -1,0 +1,40 @@
+{%extends 'base2.html'%}
+{%block style%}
+
+<style type="text/css">
+	.suc-container{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: safe start;
+		background: rgb(0, 0, 20);
+		min-height: 100vh;
+		width: 100%;
+		margin-top: 50px;
+	}
+	.suc-logo{
+		color: rgb(75, 196, 51);
+		margin-top: 100px;
+	}
+	.suc-mini-logo{
+		color: rgb(75, 196, 51);
+		margin-top: 40px;
+	}
+
+	@media screen and (max-width: 778px){
+		.suc-logo{
+			font-size: 16px;
+		}
+	}
+</style>
+
+{%endblock%}
+
+{%block content%}
+
+<div class="suc-container">
+	<h1 class="suc-logo">TRANSACTION SUCCESSFUL ✔</h1>
+	<h3 class="suc-mini-logo">Thankyou for choosing Apperstar</h3>
+</div>
+
+{%endblock%}

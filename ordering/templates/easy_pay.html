@@ -1,0 +1,77 @@
+{%extends 'base2.html'%}
+{%block style%}
+
+<style type="text/css">
+	.pay-container{
+		min-height: 100vh;
+		width: 100%;
+		background: rgb(0, 0, 20);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: safe start;
+		margin-top: 50px;
+	}
+	.phone-holder{
+		width: 70%;
+		min-height: 50vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+	}
+	.pay-logo{
+		color: rgb(75, 196, 51);
+		margin-top: 40px;
+	}
+
+	.pay-phrase{
+		color: linen;
+		margin-top: 60px;
+		text-align: center;
+	}
+	.pay-number{
+		height: 40px;
+		width: 200px;
+		background: rgb(75, 196, 51);
+		color: linen;
+		text-align: center;
+		padding: 5px;
+		border: 0px;
+		margin-top: 20px;
+	}
+	@media screen and (max-width: 778px){
+
+	}
+</style>
+
+{%endblock%}
+
+{%block content%}
+
+<div class="pay-container">
+	<h2 class="pay-logo">Payment Method</h2>
+	<section class="phone-holder">
+		<p class="pay-phrase">
+			Hello {{request.user}}, We are currently working on
+			giving our customers a more suitable and flexible payment
+			method; until then all payments for purchase of any of our products
+			are made by sending money to the phone number below. Click the green area to copy
+			the number. Thankyou for choosing ApperStar
+		</p>
+		<input class="pay-number" id="phone" value="07********" placeholder="07********"></input>
+	</section>
+</div>
+
+<script type="text/javascript">
+    function copy() {
+  		var copyText = document.querySelector("#phone");
+  		copyText.select();
+  		document.execCommand("copy");
+  		window.alert('copied')
+	}
+
+	document.querySelector("#phone").addEventListener("click", copy);
+</script>
+
+{%endblock%}

@@ -84,6 +84,10 @@
 		from{top: 599px;}
 		to{top: 400px;}
 	}
+	@keyframes rotate{
+		from{transform: rotate(90deg);}
+		to{transform: rotate(-90deg);}
+	}
 
      #starfish{
 		height: 100px;
@@ -91,7 +95,7 @@
 		position: absolute;
 		top: 600px;
 		left: 617px;
-		animation-name: jump;
+		animation-name: jump, rotate;
 		animation-duration: 4s;
 		animation-iteration-count: infinite;
 		animation-direction: alternate;
